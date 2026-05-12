@@ -170,6 +170,13 @@
         .instructions h3 { color: #f093fb; margin-bottom: 15px; }
         .instructions ol { padding-right: 20px; line-height: 2; color: #ccc; }
 
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #aaa;
+            font-size: 1.1em;
+        }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -192,6 +199,10 @@
             <div class="subtitle">רשימת השירים הרשמית של הלהקה</div>
         </header>
 
+        <div class="playlist-link">
+            <a href="https://www.youtube.com/watch?v=7lvMNLhJrb0&list=PLQtKYxTP_A-vJ-yD-k3F6_o1DJ0_oyN6t" target="_blank">🎵 הגע כאן להשמעת הפלייליסט המלא</a>
+        </div>
+
         <div class="stats" id="stats">
             <div class="stat-box">
                 <div class="stat-number" id="total-count">0</div>
@@ -207,92 +218,56 @@
             </div>
             <div class="stat-box">
                 <div class="stat-number" id="new-count">0</div>
-                <div class="stat-label">🆕 חדשים</div>
+                <div class="stat-label">🔵 חדשים</div>
             </div>
         </div>
 
-        <div class="filters" id="filters">
-            <button class="filter-btn active" data-filter="all">הכל</button>
-            <button class="filter-btn" data-filter="ready">🟢 מוכנים</button>
-            <button class="filter-btn" data-filter="learning">📖 בלימוד</button>
-            <button class="filter-btn" data-filter="new">🆕 חדשים</button>
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterSongs('all')">הכל</button>
+            <button class="filter-btn" onclick="filterSongs('ready')">🟢 מוכנים</button>
+            <button class="filter-btn" onclick="filterSongs('learning')">📖 בלימוד</button>
+            <button class="filter-btn" onclick="filterSongs('new')">🔵 חדשים</button>
         </div>
 
-        <div class="playlist-link">
-            <a href="#" target="_blank">🎵 הגע כאן להשמעת הפלייליסט 🎵</a>
+        <div id="songs-container">
+            <div class="empty-state">⏳ טוען את רשימת השירים...</div>
         </div>
-
-        <table id="songs-table">
-            <thead>
-                <tr>
-                    <th>שם השיר</th>
-                    <th>אמן מקורי</th>
-                    <th>סטטוס</th>
-                    <th>יוטיוב</th>
-                </tr>
-            </thead>
-            <tbody id="songs-body">
-                <!-- Songs will be populated here by JavaScript -->
-            </tbody>
-        </table>
 
         <div class="legend">
-            <div>🟢 <span>מוכנים - השיר מוכן להופעה</span></div>
-            <div>📖 <span>בלימוד - השיר עדיין בעבודה</span></div>
-            <div>🆕 <span>חדשים - שירים שלא התחלנו ללמוד</span></div>
-        </div>
-
-        <div class="instructions">
-            <h3>📋 הוראות שימוש:</h3>
-            <ol>
-                <li>בחר סטטוס מהכפתורים בחלק העליון לסינון השירים</li>
-                <li>לחץ על סמל ה-YouTube לצפייה בשיר</li>
-                <li>לחץ על הפלייליסט כדי להאזין לכל השירים</li>
-                <li>עודכנות השירים עדכנית ותמיד אפשר להוסיף שירים חדשים</li>
-            </ol>
+            <div><span class="status status-ready">🟢 מוכן</span> - שיר זה כבר מוכן להופעה</div>
+            <div><span class="status status-learning">📖 בלימוד</span> - בעבודה עליו כרגע</div>
+            <div><span class="status status-new">🔵 חדש</span> - חדש בקרטה</div>
         </div>
 
         <footer>
-            <p>🎸 הרכב סביר © 2026 | מוזיקה אמת 🎵</p>
+            <p>© 2026 הרכב סביר | רשימת שירים רשמית</p>
         </footer>
     </div>
 
     <script>
-        // Sample songs data - Replace with your actual songs
-        const songs = [
-            {
-                name: "שיר לדוגמה 1",
-                artist: "אמן 1",
-                status: "ready",
-                youtube: "https://www.youtube.com/results?search_query=%D7%A9%D7%99%D7%A8+1"
-            },
-            {
-                name: "שיר לדוגמה 2",
-                artist: "אמן 2",
-                status: "learning",
-                youtube: "https://www.youtube.com/results?search_query=%D7%A9%D7%99%D7%A8+2"
-            },
-            {
-                name: "שיר לדוגמה 3",
-                artist: "אמן 3",
-                status: "new",
-                youtube: "https://www.youtube.com/results?search_query=%D7%A9%D7%99%D7%A8+3"
-            }
-        ];
+        let allSongs = [];
+        let currentFilter = 'all';
 
-        // Initialize the page
-        function init() {
-            updateStats();
-            renderTable('all');
-            setupFilterButtons();
+        // Fetch songs from songs.json
+        async function loadSongs() {
+            try {
+                const response = await fetch('songs.json');
+                const data = await response.json();
+                allSongs = data.songs || [];
+                updateStats();
+                renderSongs();
+            } catch (error) {
+                console.error('Error loading songs:', error);
+                document.getElementById('songs-container').innerHTML = 
+                    '<div class="empty-state">שגיאה בטעינת רשימת השירים. אנא נסה מחדש.</div>';
+            }
         }
 
-        // Update statistics
         function updateStats() {
-            const total = songs.length;
-            const ready = songs.filter(s => s.status === 'ready').length;
-            const learning = songs.filter(s => s.status === 'learning').length;
-            const newSongs = songs.filter(s => s.status === 'new').length;
+            const total = allSongs.length;
+            const ready = allSongs.filter(s => s.status === 'ready').length;
+            const learning = allSongs.filter(s => s.status === 'learning').length;
+            const newSongs = allSongs.filter(s => s.status === 'new').length;
 
             document.getElementById('total-count').textContent = total;
             document.getElementById('ready-count').textContent = ready;
@@ -300,52 +275,54 @@
             document.getElementById('new-count').textContent = newSongs;
         }
 
-        // Render table based on filter
-        function renderTable(filter) {
-            const tbody = document.getElementById('songs-body');
-            tbody.innerHTML = '';
-
-            const filtered = filter === 'all' ? songs : songs.filter(s => s.status === filter);
-
-            filtered.forEach(song => {
-                const row = document.createElement('tr');
-                const statusText = getStatusText(song.status);
-                const statusClass = `status-${song.status}`;
-
-                row.innerHTML = `
-                    <td>${song.name}</td>
-                    <td>${song.artist}</td>
-                    <td><span class="status ${statusClass}">${statusText}</span></td>
-                    <td><a href="${song.youtube}" target="_blank" class="yt-link">▶️</a></td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Get status display text
-        function getStatusText(status) {
+        function getStatusBadge(status) {
             const statusMap = {
-                'ready': '🟢 מוכן',
-                'learning': '📖 בלימוד',
-                'new': '🆕 חדש'
+                'ready': { class: 'status-ready', text: '🟢 מוכן' },
+                'learning': { class: 'status-learning', text: '📖 בלימוד' },
+                'new': { class: 'status-new', text: '🔵 חדש' }
             };
-            return statusMap[status] || status;
+            const s = statusMap[status] || statusMap['new'];
+            return `<span class="status ${s.class}">${s.text}</span>`;
         }
 
-        // Setup filter buttons
-        function setupFilterButtons() {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    buttons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    renderTable(this.dataset.filter);
-                });
+        function renderSongs() {
+            const filtered = currentFilter === 'all' 
+                ? allSongs 
+                : allSongs.filter(s => s.status === currentFilter);
+
+            if (filtered.length === 0) {
+                document.getElementById('songs-container').innerHTML = 
+                    '<div class="empty-state">אין שירים בקטגוריה זו</div>';
+                return;
+            }
+
+            let html = '<table><thead><tr><th>שם השיר</th><th>אמן</th><th>סטטוס</th><th>קישור</th></tr></thead><tbody>';
+            
+            filtered.forEach(song => {
+                const youtubeUrl = `https://www.youtube.com/watch?v=${song.videoId}`;
+                html += `
+                    <tr>
+                        <td>${song.name}</td>
+                        <td>${song.artist}</td>
+                        <td>${getStatusBadge(song.status)}</td>
+                        <td><a href="${youtubeUrl}" target="_blank" class="yt-link">▶️</a></td>
+                    </tr>
+                `;
             });
+
+            html += '</tbody></table>';
+            document.getElementById('songs-container').innerHTML = html;
         }
 
-        // Run initialization on page load
-        document.addEventListener('DOMContentLoaded', init);
+        function filterSongs(status) {
+            currentFilter = status;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderSongs();
+        }
+
+        // Load songs on page load
+        window.addEventListener('DOMContentLoaded', loadSongs);
     </script>
 </body>
 </html>
