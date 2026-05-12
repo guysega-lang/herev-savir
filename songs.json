@@ -18,6 +18,108 @@
       "artist": "אמן 3",
       "status": "new",
       "videoId": "VIDEO_ID_3"
+    },
+    {
+      "name": "Evidence",
+      "artist": "Faith No More",
+      "status": "ready",
+      "videoId": "VIDEO_ID_EVIDENCE"
+    },
+    {
+      "name": "Soul To Squeeze",
+      "artist": "Red Hot Chili Peppers",
+      "status": "ready",
+      "videoId": "VIDEO_ID_SOUL_TO_SQUEEZE"
+    },
+    {
+      "name": "Sledgehammer",
+      "artist": "Peter Gabriel",
+      "status": "ready",
+      "videoId": "VIDEO_ID_SLEDGEHAMMER"
+    },
+    {
+      "name": "Don't You (Forget About Me)",
+      "artist": "Simple Minds",
+      "status": "ready",
+      "videoId": "VIDEO_ID_DONT_YOU"
+    },
+    {
+      "name": "Head Over Heels",
+      "artist": "Tears For Fears",
+      "status": "ready",
+      "videoId": "VIDEO_ID_HEAD_OVER_HEELS"
+    },
+    {
+      "name": "Sweet Home Alabama",
+      "artist": "Lynyrd Skynyrd",
+      "status": "ready",
+      "videoId": "VIDEO_ID_SWEET_HOME"
+    },
+    {
+      "name": "Give Me One Reason",
+      "artist": "Tracy Chapman",
+      "status": "ready",
+      "videoId": "VIDEO_ID_GIVE_ME_REASON"
+    },
+    {
+      "name": "If I Ever Lose My Faith In You",
+      "artist": "Sting",
+      "status": "ready",
+      "videoId": "VIDEO_ID_FAITH_IN_YOU"
+    },
+    {
+      "name": "You Oughta Know",
+      "artist": "Alanis Morissette",
+      "status": "ready",
+      "videoId": "VIDEO_ID_YOU_OUGHTA_KNOW"
+    },
+    {
+      "name": "Black Velvet",
+      "artist": "Alannah Myles",
+      "status": "ready",
+      "videoId": "VIDEO_ID_BLACK_VELVET"
+    },
+    {
+      "name": "If It Makes You Happy",
+      "artist": "Sheryl Crow",
+      "status": "ready",
+      "videoId": "VIDEO_ID_IF_IT_MAKES_YOU"
+    },
+    {
+      "name": "Bitch",
+      "artist": "Meredith Brooks",
+      "status": "ready",
+      "videoId": "VIDEO_ID_BITCH"
+    },
+    {
+      "name": "Free Fallin'",
+      "artist": "Tom Petty & The Heartbreakers",
+      "status": "ready",
+      "videoId": "VIDEO_ID_FREE_FALLIN"
+    },
+    {
+      "name": "Long Train Runnin'",
+      "artist": "The Doobie Brothers",
+      "status": "ready",
+      "videoId": "VIDEO_ID_LONG_TRAIN"
+    },
+    {
+      "name": "The Chain",
+      "artist": "Fleetwood Mac",
+      "status": "ready",
+      "videoId": "VIDEO_ID_THE_CHAIN"
+    },
+    {
+      "name": "Son of a Preacher Man",
+      "artist": "Dusty Springfield",
+      "status": "ready",
+      "videoId": "VIDEO_ID_SON_OF_PREACHER"
+    },
+    {
+      "name": "Piece of My Heart",
+      "artist": "Janis Joplin",
+      "status": "ready",
+      "videoId": "VIDEO_ID_PIECE_OF_HEART"
     }
   ]
 }
