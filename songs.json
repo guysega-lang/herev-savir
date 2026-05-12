@@ -1,0 +1,23 @@
+{
+  "playlistUrl": "https://www.youtube.com/watch?v=7lvMNLhJrb0&list=PLQtKYxTP_A-vJ-yD-k3F6_o1DJ0_oyN6t",
+  "songs": [
+    {
+      "name": "שיר לדוגמה 1",
+      "artist": "אמן 1",
+      "status": "ready",
+      "videoId": "7lvMNLhJrb0"
+    },
+    {
+      "name": "שיר לדוגמה 2",
+      "artist": "אמן 2",
+      "status": "learning",
+      "videoId": "VIDEO_ID_2"
+    },
+    {
+      "name": "שיר לדוגמה 3",
+      "artist": "אמן 3",
+      "status": "new",
+      "videoId": "VIDEO_ID_3"
+    }
+  ]
+}
