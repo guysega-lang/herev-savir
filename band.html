@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הרכב סביר 🎸 רשימת שירים</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .band-name {
+            font-size: 3em;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #fda085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle { color: #aaa; font-size: 1.2em; }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+        }
+
+        .stat-number { font-size: 2em; font-weight: bold; color: #f5576c; }
+        .stat-label { color: #aaa; font-size: 0.9em; margin-top: 5px; }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            border-color: transparent;
+        }
+
+        .playlist-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .playlist-link a {
+            color: #f5576c;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 12px 30px;
+            border: 2px solid #f5576c;
+            border-radius: 30px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .playlist-link a:hover {
+            background: #f5576c;
+            color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            text-align: right;
+            font-weight: 600;
+            color: #f093fb;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        tr { transition: background 0.3s; }
+        tr:hover { background: rgba(255,255,255,0.08); }
+
+        .status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            display: inline-block;
+        }
+
+        .status-ready { background: rgba(46, 213, 115, 0.2); color: #2ed573; }
+        .status-learning { background: rgba(255, 165, 2, 0.2); color: #ffa502; }
+        .status-new { background: rgba(116, 185, 255, 0.2); color: #74b9ff; }
+
+        .yt-link {
+            color: #ff4757;
+            text-decoration: none;
+            font-size: 1.3em;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .yt-link:hover { transform: scale(1.3); }
+
+        .legend {
+            text-align: center;
+            margin: 30px 0;
+            color: #aaa;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .instructions {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .instructions h3 { color: #f093fb; margin-bottom: 15px; }
+        .instructions ol { padding-right: 20px; line-height: 2; color: #ccc; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .band-name { font-size: 2em; }
+            table { font-size: 0.85em; }
+            th, td { padding: 8px; }
+            .stats { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="band-name">🎸 הרכב סביר 🎸</div>
+            <div class="subtitle">רשימת השירים הרשמית של הלהקה</div>
+        </header>
+
+        <div class="stats" id="stats">
+            <div class="stat-box">
+                <div class="stat-number" id="total-count">1</div>
+                <div class="stat-label">סה"כ שירים</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="ready-count">0</div>
+                <div class="stat-label">🟢 מוכנים</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="learning-count">0</div>
+                <div class="stat-label">📖 בלימוד</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="new-count">1</div>
+                <div class="stat-label">
