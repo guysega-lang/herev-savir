@@ -159,17 +159,6 @@
             flex-wrap: wrap;
         }
 
-        .instructions {
-            background: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .instructions h3 { color: #f093fb; margin-bottom: 15px; }
-        .instructions ol { padding-right: 20px; line-height: 2; color: #ccc; }
-
         .empty-state {
             text-align: center;
             padding: 40px;
@@ -184,11 +173,227 @@
             margin-top: 30px;
         }
 
+        /* ===== NEW: Add Song Form ===== */
+        .add-song-form {
+            background: rgba(255,255,255,0.08);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .add-song-form h3 { color: #f093fb; margin-bottom: 15px; }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .form-input {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-size: 0.95em;
+            flex: 1;
+            min-width: 140px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus { border-color: #f093fb; }
+        .form-input::placeholder { color: #777; }
+
+        .form-select {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-size: 0.95em;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .form-select option { background: #302b63; color: #fff; }
+
+        .btn-add {
+            padding: 10px 25px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .btn-add:hover { opacity: 0.85; }
+
+        /* ===== NEW: Action Buttons ===== */
+        .btn-edit, .btn-delete {
+            border: none;
+            border-radius: 8px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: opacity 0.3s;
+        }
+
+        .btn-edit {
+            background: rgba(116, 185, 255, 0.2);
+            color: #74b9ff;
+            margin-left: 5px;
+        }
+
+        .btn-delete {
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+        }
+
+        .btn-edit:hover, .btn-delete:hover { opacity: 0.7; }
+
+        .status-select {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .status-select option { background: #302b63; color: #fff; }
+
+        /* ===== NEW: Toolbar ===== */
+        .toolbar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .toolbar-btn {
+            padding: 8px 18px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: #aaa;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .toolbar-btn:hover {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+        }
+
+        /* ===== NEW: Edit Modal ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: linear-gradient(135deg, #1a1a3e, #302b63);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            width: 90%;
+            max-width: 450px;
+        }
+
+        .modal h3 { color: #f093fb; margin-bottom: 20px; text-align: center; }
+
+        .modal-field {
+            margin-bottom: 15px;
+        }
+
+        .modal-field label {
+            display: block;
+            color: #aaa;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .modal-field input, .modal-field select {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-size: 0.95em;
+            outline: none;
+        }
+
+        .modal-field select option { background: #302b63; color: #fff; }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .modal-btn-save {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            color: #fff;
+        }
+
+        .modal-btn-cancel {
+            background: rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* ===== NEW: Toast Notification ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1em;
+            z-index: 2000;
+            transition: transform 0.4s ease;
+            pointer-events: none;
+        }
+
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
         @media (max-width: 600px) {
             .band-name { font-size: 2em; }
             table { font-size: 0.85em; }
             th, td { padding: 8px; }
             .stats { gap: 15px; }
+            .form-row { flex-direction: column; }
+            .form-input, .form-select, .btn-add { width: 100%; }
         }
     </style>
 </head>
@@ -229,6 +434,28 @@
             <button class="filter-btn" onclick="filterSongs('new')">🔵 חדשים</button>
         </div>
 
+        <!-- NEW: Add Song Form -->
+        <div class="add-song-form">
+            <h3>➕ הוספת שיר חדש</h3>
+            <div class="form-row">
+                <input type="text" id="new-name" class="form-input" placeholder="שם השיר">
+                <input type="text" id="new-artist" class="form-input" placeholder="אמן">
+                <input type="text" id="new-videoId" class="form-input" placeholder="YouTube Video ID">
+                <select id="new-status" class="form-select">
+                    <option value="new">🔵 חדש</option>
+                    <option value="learning">📖 בלימוד</option>
+                    <option value="ready">🟢 מוכן</option>
+                </select>
+                <button onclick="addSong()" class="btn-add">הוסף ➕</button>
+            </div>
+        </div>
+
+        <!-- NEW: Toolbar -->
+        <div class="toolbar">
+            <button class="toolbar-btn" onclick="resetToOriginal()">🔄 איפוס לרשימה המקורית</button>
+            <button class="toolbar-btn" onclick="exportJSON()">📥 ייצוא JSON</button>
+        </div>
+
         <div id="songs-container">
             <div class="empty-state">⏳ טוען את רשימת השירים...</div>
         </div>
@@ -244,12 +471,67 @@
         </footer>
     </div>
 
+    <!-- NEW: Edit Modal -->
+    <div class="modal-overlay" id="edit-modal">
+        <div class="modal">
+            <h3>✏️ עריכת שיר</h3>
+            <input type="hidden" id="edit-index">
+            <div class="modal-field">
+                <label>שם השיר</label>
+                <input type="text" id="edit-name">
+            </div>
+            <div class="modal-field">
+                <label>אמן</label>
+                <input type="text" id="edit-artist">
+            </div>
+            <div class="modal-field">
+                <label>YouTube Video ID</label>
+                <input type="text" id="edit-videoId">
+            </div>
+            <div class="modal-field">
+                <label>סטטוס</label>
+                <select id="edit-status">
+                    <option value="new">🔵 חדש</option>
+                    <option value="learning">📖 בלימוד</option>
+                    <option value="ready">🟢 מוכן</option>
+                </select>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-save" onclick="saveEdit()">💾 שמור</button>
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal()">ביטול</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Toast -->
+    <div class="toast" id="toast"></div>
+
     <script>
         let allSongs = [];
         let currentFilter = 'all';
 
-        // Fetch songs from songs.json
+        // ===== Toast Notification =====
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // ===== localStorage =====
+        function saveSongs() {
+            localStorage.setItem('bandSongs', JSON.stringify(allSongs));
+        }
+
+        // ===== Load Songs (localStorage first, then GitHub) =====
         async function loadSongs() {
+            const saved = localStorage.getItem('bandSongs');
+            if (saved) {
+                allSongs = JSON.parse(saved);
+                updateStats();
+                renderSongs();
+                return;
+            }
             try {
                 const response = await fetch('https://raw.githubusercontent.com/guysega-lang/herev-savir/main/songs.json');
                 const data = await response.json();
@@ -263,28 +545,15 @@
             }
         }
 
+        // ===== Stats =====
         function updateStats() {
-            const total = allSongs.length;
-            const ready = allSongs.filter(s => s.status === 'ready').length;
-            const learning = allSongs.filter(s => s.status === 'learning').length;
-            const newSongs = allSongs.filter(s => s.status === 'new').length;
-
-            document.getElementById('total-count').textContent = total;
-            document.getElementById('ready-count').textContent = ready;
-            document.getElementById('learning-count').textContent = learning;
-            document.getElementById('new-count').textContent = newSongs;
+            document.getElementById('total-count').textContent = allSongs.length;
+            document.getElementById('ready-count').textContent = allSongs.filter(s => s.status === 'ready').length;
+            document.getElementById('learning-count').textContent = allSongs.filter(s => s.status === 'learning').length;
+            document.getElementById('new-count').textContent = allSongs.filter(s => s.status === 'new').length;
         }
 
-        function getStatusBadge(status) {
-            const statusMap = {
-                'ready': { class: 'status-ready', text: '🟢 מוכן' },
-                'learning': { class: 'status-learning', text: '📖 בלימוד' },
-                'new': { class: 'status-new', text: '🔵 חדש' }
-            };
-            const s = statusMap[status] || statusMap['new'];
-            return `<span class="status ${s.class}">${s.text}</span>`;
-        }
-
+        // ===== Render Songs (with edit/delete buttons & status dropdown) =====
         function renderSongs() {
             const filtered = currentFilter === 'all' 
                 ? allSongs 
@@ -296,16 +565,27 @@
                 return;
             }
 
-            let html = '<table><thead><tr><th>שם השיר</th><th>אמן</th><th>סטטוס</th><th>קישור</th></tr></thead><tbody>';
+            let html = '<table><thead><tr><th>שם השיר</th><th>אמן</th><th>סטטוס</th><th>קישור</th><th>פעולות</th></tr></thead><tbody>';
             
             filtered.forEach(song => {
                 const youtubeUrl = `https://www.youtube.com/watch?v=${song.videoId}`;
+                const realIndex = allSongs.indexOf(song);
                 html += `
                     <tr>
                         <td>${song.name}</td>
                         <td>${song.artist}</td>
-                        <td>${getStatusBadge(song.status)}</td>
+                        <td>
+                            <select class="status-select" onchange="changeStatus(${realIndex}, this.value)">
+                                <option value="new" ${song.status==='new'?'selected':''}>🔵 חדש</option>
+                                <option value="learning" ${song.status==='learning'?'selected':''}>📖 בלימוד</option>
+                                <option value="ready" ${song.status==='ready'?'selected':''}>🟢 מוכן</option>
+                            </select>
+                        </td>
                         <td><a href="${youtubeUrl}" target="_blank" class="yt-link">▶️</a></td>
+                        <td>
+                            <button class="btn-edit" onclick="openEdit(${realIndex})">✏️</button>
+                            <button class="btn-delete" onclick="deleteSong(${realIndex})">🗑️</button>
+                        </td>
                     </tr>
                 `;
             });
@@ -314,6 +594,7 @@
             document.getElementById('songs-container').innerHTML = html;
         }
 
+        // ===== Filter =====
         function filterSongs(status) {
             currentFilter = status;
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -321,7 +602,117 @@
             renderSongs();
         }
 
-        // Load songs on page load
+        // ===== Add Song =====
+        function addSong() {
+            const name = document.getElementById('new-name').value.trim();
+            const artist = document.getElementById('new-artist').value.trim();
+            const videoId = document.getElementById('new-videoId').value.trim();
+            const status = document.getElementById('new-status').value;
+
+            if (!name || !artist) {
+                showToast('⚠️ נא למלא שם שיר ואמן');
+                return;
+            }
+
+            allSongs.push({ name, artist, videoId, status });
+            saveSongs();
+            updateStats();
+            renderSongs();
+
+            // Clear inputs
+            document.getElementById('new-name').value = '';
+            document.getElementById('new-artist').value = '';
+            document.getElementById('new-videoId').value = '';
+            document.getElementById('new-status').value = 'new';
+
+            showToast(`✅ "${name}" נוסף בהצלחה!`);
+        }
+
+        // ===== Delete Song =====
+        function deleteSong(index) {
+            const songName = allSongs[index].name;
+            if (confirm(`למחוק את "${songName}"?`)) {
+                allSongs.splice(index, 1);
+                saveSongs();
+                updateStats();
+                renderSongs();
+                showToast(`🗑️ "${songName}" נמחק`);
+            }
+        }
+
+        // ===== Change Status (inline dropdown) =====
+        function changeStatus(index, newStatus) {
+            allSongs[index].status = newStatus;
+            saveSongs();
+            updateStats();
+            renderSongs();
+            showToast(`🔄 סטטוס עודכן ל-${newStatus === 'ready' ? '🟢 מוכן' : newStatus === 'learning' ? '📖 בלימוד' : '🔵 חדש'}`);
+        }
+
+        // ===== Edit Modal =====
+        function openEdit(index) {
+            const song = allSongs[index];
+            document.getElementById('edit-index').value = index;
+            document.getElementById('edit-name').value = song.name;
+            document.getElementById('edit-artist').value = song.artist;
+            document.getElementById('edit-videoId').value = song.videoId || '';
+            document.getElementById('edit-status').value = song.status;
+            document.getElementById('edit-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('edit-modal').classList.remove('active');
+        }
+
+        function saveEdit() {
+            const index = parseInt(document.getElementById('edit-index').value);
+            allSongs[index].name = document.getElementById('edit-name').value.trim();
+            allSongs[index].artist = document.getElementById('edit-artist').value.trim();
+            allSongs[index].videoId = document.getElementById('edit-videoId').value.trim();
+            allSongs[index].status = document.getElementById('edit-status').value;
+            saveSongs();
+            updateStats();
+            renderSongs();
+            closeModal();
+            showToast(`✅ "${allSongs[index].name}" עודכן בהצלחה!`);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('edit-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ===== Reset to Original =====
+        async function resetToOriginal() {
+            if (confirm('לאפס לרשימה המקורית מ-GitHub? כל השינויים המקומיים יימחקו.')) {
+                localStorage.removeItem('bandSongs');
+                try {
+                    const response = await fetch('https://raw.githubusercontent.com/guysega-lang/herev-savir/main/songs.json');
+                    const data = await response.json();
+                    allSongs = data.songs || [];
+                    updateStats();
+                    renderSongs();
+                    showToast('🔄 הרשימה אופסה לגרסה המקורית');
+                } catch (error) {
+                    showToast('⚠️ שגיאה באיפוס');
+                }
+            }
+        }
+
+        // ===== Export JSON =====
+        function exportJSON() {
+            const dataStr = JSON.stringify({ songs: allSongs }, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'songs.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('📥 הקובץ songs.json הורד בהצלחה');
+        }
+
+        // ===== Init =====
         window.addEventListener('DOMContentLoaded', loadSongs);
     </script>
 </body>
